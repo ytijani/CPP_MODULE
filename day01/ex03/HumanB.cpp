@@ -13,5 +13,5 @@ void    HumanB::attack()
 
 void    HumanB::setWeapon(::Weapon & We)
 {
-   this->Weapon = & We;
+   this->Weapon =  & We;
 }

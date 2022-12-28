@@ -7,7 +7,7 @@ void    Zombie::announce()
 
 Zombie::Zombie(std::string name)
 {
-    std::cout<<"Constr called"<<std::endl;
+    std::cout<<"Constructor called"<<std::endl;
     this->name = name;
 }
 
