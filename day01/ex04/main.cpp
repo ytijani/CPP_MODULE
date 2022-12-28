@@ -5,26 +5,25 @@ int main(int ac, char *av[])
 
     if(ac > 1)
     {
-        sed op("abc", "lolo", "test");
+        sed op(av[2], av[3], av[1]);
         std::ifstream infile;
         std::ofstream outfile;
-        std::string   s1;
-        std::string   s2;
         std::string str;
-        s1 = op.getfirststring();
-        s2 = op.getsecondstring();
-        infile.open("test");
+        infile.open(av[1]);
         outfile.open(op.getfilename());
         if(!infile)
         {
             std::cout<<"infile not found"<<std::endl;
-            exit(1);
+            return (0);
         }
         while(std::getline(infile, str))
         {
-            op.replacestring(str, s1, s2);
-            outfile<< str<<std::endl;
+            op.replacestring(str, op.getfirststring(), op.getsecondstring());
+            outfile << str<<std::endl;
         }
         infile.close();
+        outfile.close();
     }
+    else
+        std::cout<<"invalid arg"<<std::endl;
 }

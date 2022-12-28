@@ -16,7 +16,7 @@ class   sed
         std::string getfilename();
         std::string getfirststring();
         std::string getsecondstring();
-        void    replacestring(std::string & str, std::string & s1, std::string & s2);
+        void    replacestring(std::string & str, const std::string & s1, const std::string & s2);
 };
 
 # endif
