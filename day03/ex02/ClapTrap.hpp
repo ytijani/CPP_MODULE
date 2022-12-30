@@ -5,7 +5,7 @@
 
 class ClapTrap
 {
-    private :
+    protected :
         std::string _name;
         int     _Hitpoint;
         int     _Energy_point;
@@ -20,8 +20,8 @@ class ClapTrap
         void    beRepaired(unsigned int amount);
 
         int check_healt();
-        void    set_ad(int i);
         std::string get_name();
+        void    set_ad(int i);
         ~ClapTrap();
 };
 

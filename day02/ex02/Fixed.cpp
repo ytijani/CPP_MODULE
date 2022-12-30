@@ -29,7 +29,7 @@ int    Fixed::toInt() const
 
 float   Fixed::toFloat() const
 {
-    return ((float)nbfixed / (float)(1<<fbits));
+    return ((float)nbfixed / (1<<fbits));
 }
 
 void    Fixed::setRawBits(int const raw)
@@ -45,44 +45,44 @@ int    Fixed::getRawBits() const
 /*******comparison operators*****************/
 bool    Fixed::operator<(Fixed const &op)
 {
-    return ((this->nbfixed < op.nbfixed) ? true : false);
+    return ((this->nbfixed < op.getRawBits()) ? true : false);
 }
 
 bool    Fixed::operator>(Fixed const &op)
 {
-    return ((this->nbfixed > op.nbfixed) ? true : false);
+    return ((this->nbfixed > op.getRawBits()) ? true : false);
 }
 
 bool    Fixed::operator>=(Fixed const &op)
 {
-    return ((this->nbfixed >= op.nbfixed) ? true : false);
+    return ((this->nbfixed >= op.getRawBits()) ? true : false);
 }
 
 bool    Fixed::operator<=(Fixed const &op)
 {
-    return ((this->nbfixed <= op.nbfixed) ? true : false);
+    return ((this->nbfixed <= op.getRawBits()) ? true : false);
 }
 
 bool    Fixed::operator==(Fixed const &op)
 {
-    return ((this->nbfixed = op.nbfixed) ? true : false);
+    return ((this->nbfixed = op.getRawBits()) ? true : false);
 }
 
 bool    Fixed::operator!=(Fixed const &op)
 {
-    return ((this->nbfixed != op.nbfixed) ? true : false);
+    return ((this->nbfixed != op.getRawBits()) ? true : false);
 }
 
 /*******arithmetic operators: *****************/
 Fixed &Fixed::operator+(const Fixed & op)
 {
-    this->nbfixed = nbfixed + op.nbfixed;
+    this->nbfixed = nbfixed + op.getRawBits();
     return(*this);
 }
 
 Fixed &Fixed::operator-(const Fixed & op)
 {
-    this->nbfixed = nbfixed - op.nbfixed;
+    this->nbfixed = nbfixed - op.getRawBits();
     return(*this);
 }
 
@@ -126,7 +126,7 @@ Fixed   &Fixed::operator--(int)
 
 Fixed  & Fixed::operator=(const Fixed & op)
 {
-    this->nbfixed = op.nbfixed;
+    this->nbfixed = op.getRawBits();
     return (*this);
 }
 
@@ -146,7 +146,7 @@ const int &Fixed::min(Fixed const &op,Fixed const &op1)
 
 int &Fixed::max(Fixed &op, Fixed &op1)
 {
-    if (op.nbfixed > op1.nbfixed)
+    if (op.getRawBits() > op1.nbfixed)
         return (op.nbfixed);
     return (op1.nbfixed);
 }

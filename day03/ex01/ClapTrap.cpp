@@ -2,12 +2,12 @@
 
 ClapTrap::ClapTrap()
 {
-    std::cout<<"Default Constructor called"<<std::endl;
+    std::cout<<"ClapTrap Default Constructor called"<<std::endl;
 }
 
 ClapTrap::ClapTrap(std::string Name)
 {
-    std::cout<<"Constructor called"<<std::endl;
+    std::cout<<"Claptrap Constructor called"<<std::endl;
     this->_name = Name;
     this->_Hitpoint = 10;
     this->_attack_damage = 0;
@@ -84,5 +84,5 @@ void    ClapTrap::set_ad(int i)
 
 ClapTrap::~ClapTrap()
 {
-    std::cout<<"Desctructor called"<<std::endl;
+    std::cout<<"ClapTrap Desctructor Called"<<std::endl;
 }
