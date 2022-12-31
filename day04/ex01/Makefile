@@ -1,6 +1,6 @@
-NAME = DiamondTrap
+NAME = Animal
 
-SRC = main.cpp 	ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
+SRC = main.cpp 	Dog.cpp Cat.cpp Animal.cpp WrongCat.cpp WrongAnimal.cpp
 
 CC = c++
 
