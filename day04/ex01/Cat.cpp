@@ -4,6 +4,7 @@ Cat::Cat()
 {
     std::cout<<"Cat Defaults constructor called"<<std::endl;
     this->type = "Cat";
+    this->brain = new Brain();
 }
 
 Cat::Cat(const Cat &op)
@@ -31,4 +32,5 @@ void    Cat::makeSound() const
 Cat::~Cat()
 {
     std::cout<<"Cat  Desctructor called"<<std::endl;
+    delete brain;
 }

@@ -11,7 +11,7 @@ class Brain
         Brain();
         Brain(const Brain &op);
         Brain &operator=(const Brain &op);
-        std::string    getType() const;
-        void    makeSound() const ;
         ~Brain();
 };
+
+#endif
