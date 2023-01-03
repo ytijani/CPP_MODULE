@@ -3,4 +3,5 @@
 int main()
 {
     randomChump("lolo");
+    system("leaks Zombie");
 }
