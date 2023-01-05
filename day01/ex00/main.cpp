@@ -2,6 +2,7 @@
 
 int main()
 {
+    Zombie *z = newZombie("youssef");
+    z->announce();
     randomChump("lolo");
-    system("leaks Zombie");
 }

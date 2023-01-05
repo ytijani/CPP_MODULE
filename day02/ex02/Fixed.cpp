@@ -1,9 +1,8 @@
 #include "Fixed.hpp"
 
-#include "Fixed.hpp"
-
 Fixed::Fixed()
 {
+    std::cout<<"Default constructor called"<<std::endl;
     this->nbfixed = 0;
 }
 
@@ -43,6 +42,7 @@ int    Fixed::getRawBits() const
 }
 
 /*******comparison operators*****************/
+
 bool    Fixed::operator<(Fixed const &op)
 {
     return ((this->nbfixed < op.getRawBits()) ? true : false);
@@ -94,8 +94,8 @@ Fixed   &Fixed::operator/(const Fixed &op)
 
 Fixed &Fixed::operator*(const Fixed & op)
 {
-    std::cout<<"multep"<<std::endl;
     this->nbfixed = nbfixed * op.nbfixed;
+    std::cout<<"lolo"<<this->nbfixed<<std::endl;
     return (*this);
 }
 

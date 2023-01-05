@@ -18,13 +18,8 @@ void    Allocate(int *A, int n)
         A[i] = 0;
 }
 
+
 int main()
 {
-    int n;
-
-    std::cin>>n;
-    int A[n];
-
-    A[0] = 1;
-    std::cout<<A[0]<<std::endl;    
+    const int &a = new int;
 }

@@ -7,7 +7,6 @@ void    HumanA::attack()
 
 HumanA::HumanA(std::string name, Weapon   &weapon)
 {
-
     this->Weapon1 =  &weapon;
     this->_name = name;
 }

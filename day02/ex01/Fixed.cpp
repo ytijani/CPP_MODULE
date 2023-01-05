@@ -20,8 +20,8 @@ Fixed::Fixed(const int nb)
 
 Fixed::Fixed(const float nb)
 {
-    std::cout<<"Float constructåor called"<<std::endl;
-    nbfixed = roundf((nb * (float)(1<<fbits)));
+    std::cout<<"Float constructor called"<<std::endl;
+    nbfixed = roundf((nb * (1<<fbits)));
 }
 
 int    Fixed::toInt() const
@@ -31,7 +31,7 @@ int    Fixed::toInt() const
 
 float   Fixed::toFloat() const
 {
-    return ((float)nbfixed / (float)(1<<fbits));
+    return ((float)nbfixed / (1<<fbits));
 }
 
 void    Fixed::setRawBits(int const raw)
@@ -51,7 +51,7 @@ Fixed  & Fixed::operator=(const Fixed & op)
     return (*this);
 }
 
-Fixed::~Fixed()
+Fixed::~Fixed() 
 {
     std::cout<<"Destructor called"<<std::endl;
 }
