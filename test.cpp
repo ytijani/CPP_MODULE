@@ -1,15 +1,15 @@
 #include <iostream>
 
 
-// class demo{
-//     int data1, data2;
-//     public:
-//         void    display();
-//         void    getvalues(int a, int b)
-//         {
-            
-//         }
-// };
+class demo{
+    int data1, data2;
+    public:
+        void    display()
+        {
+            std::cout<<"lolo";
+        }
+        void    getvalues(int a, int b);
+};
 
 void    Allocate(int *A, int n)
 {
@@ -21,5 +21,6 @@ void    Allocate(int *A, int n)
 
 int main()
 {
-    const int &a = new int;
+    void(demo::*ptr)() = &demo::display;
+    std::cout<<sizeof(ptr)<<std::endl;
 }

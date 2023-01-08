@@ -18,7 +18,7 @@ Fixed::Fixed(const int nb)
 
 Fixed::Fixed(const float nb)
 {
-    nbfixed = roundf((nb * (float)(1<<fbits)));
+    nbfixed = roundf(nb * (1<<fbits));
 }
 
 int    Fixed::toInt() const
@@ -28,7 +28,7 @@ int    Fixed::toInt() const
 
 float   Fixed::toFloat() const
 {
-    return ((float)nbfixed / (1<<fbits));
+    return ((float)this->nbfixed / (1 << this->fbits));
 }
 
 void    Fixed::setRawBits(int const raw)
@@ -43,85 +43,82 @@ int    Fixed::getRawBits() const
 
 /*******comparison operators*****************/
 
-bool    Fixed::operator<(Fixed const &op)
+bool    Fixed::operator<(Fixed const &op) const
 {
     return ((this->nbfixed < op.getRawBits()) ? true : false);
 }
 
-bool    Fixed::operator>(Fixed const &op)
+bool    Fixed::operator>(Fixed const &op) const
 {
     return ((this->nbfixed > op.getRawBits()) ? true : false);
 }
 
-bool    Fixed::operator>=(Fixed const &op)
+bool    Fixed::operator>=(Fixed const &op) const
 {
     return ((this->nbfixed >= op.getRawBits()) ? true : false);
 }
 
-bool    Fixed::operator<=(Fixed const &op)
+bool    Fixed::operator<=(Fixed const &op) const
 {
     return ((this->nbfixed <= op.getRawBits()) ? true : false);
 }
 
-bool    Fixed::operator==(Fixed const &op)
+bool    Fixed::operator==(Fixed const &op) const
 {
-    return ((this->nbfixed = op.getRawBits()) ? true : false);
+    return ((this->nbfixed == op.getRawBits()) ? true : false);
 }
 
-bool    Fixed::operator!=(Fixed const &op)
+bool    Fixed::operator!=(Fixed const &op) const
 {
     return ((this->nbfixed != op.getRawBits()) ? true : false);
 }
 
 /*******arithmetic operators: *****************/
-Fixed &Fixed::operator+(const Fixed & op)
+Fixed Fixed::operator+(const Fixed & op)
 {
-    this->nbfixed = nbfixed + op.getRawBits();
-    return(*this);
+    return Fixed(this->toFloat() + op.toFloat());
 }
 
-Fixed &Fixed::operator-(const Fixed & op)
+Fixed Fixed::operator-(const Fixed & op)
 {
-    this->nbfixed = nbfixed - op.getRawBits();
-    return(*this);
+    return Fixed(this->toFloat() - op.toFloat());
 }
 
-Fixed   &Fixed::operator/(const Fixed &op)
+Fixed   Fixed::operator/(const Fixed &op)
 {
-    this->nbfixed = nbfixed / op.nbfixed;
-    return (*this);
+    return Fixed(this->toFloat() / op.toFloat());
 }
 
-Fixed &Fixed::operator*(const Fixed & op)
+Fixed Fixed::operator*(const Fixed & op)
 {
-    this->nbfixed = nbfixed * op.nbfixed;
-    std::cout<<"lolo"<<this->nbfixed<<std::endl;
-    return (*this);
+    return Fixed(this->toFloat() * op.toFloat());
 }
 
 /*****************increment********************/
-Fixed &Fixed::operator++()
+Fixed Fixed::operator++()
 {
     ++nbfixed;
     return (*this);
 }
 
-Fixed &Fixed::operator++(int)
+Fixed Fixed::operator++(int)
 {
+    Fixed tmp(*this);
     this->nbfixed++;
-    return (*this);
+    return (tmp);
 }
 
-Fixed   &Fixed::operator--()
+Fixed   Fixed::operator--()
 {
     --nbfixed;
     return (*this); 
 }
 
-Fixed   &Fixed::operator--(int)
+Fixed   Fixed::operator--(int)
 {
-    nbfixed--;
-    return (*this); 
+   Fixed tmp(*this);
+   this->nbfixed--;
+   return (tmp); 
 }
 
 Fixed  & Fixed::operator=(const Fixed & op)
@@ -130,36 +127,41 @@ Fixed  & Fixed::operator=(const Fixed & op)
     return (*this);
 }
 
-int &Fixed::min(Fixed &op, Fixed &op1)
+Fixed  &Fixed::min(Fixed &op, Fixed &op1)
 {
-    if (op.nbfixed < op1.nbfixed)
-        return (op.nbfixed);
-    return (op1.nbfixed);
+    if (op < op1)
+        return (op);
+    return (op1);
 }
 
-const int &Fixed::min(Fixed const &op,Fixed const &op1)
+Fixed const  &Fixed::min(Fixed const &op, Fixed const &op1)
 {
-    if (op.nbfixed < op1.nbfixed)
-        return (op.nbfixed);
-    return (op1.nbfixed);
+    if (op < op1)
+        return (op);
+    return (op1);
 }
 
-int &Fixed::max(Fixed &op, Fixed &op1)
-{
-    if (op.getRawBits() > op1.nbfixed)
-        return (op.nbfixed);
-    return (op1.nbfixed);
+Fixed  &Fixed::max(Fixed &op, Fixed &op1)
+ {
+    if (op > op1)
+        return (op);
+    return (op1);
 }
 
-const int &Fixed::max(Fixed const &op,Fixed const &op1)
+Fixed const  &Fixed::max(Fixed const &op, Fixed const &op1)
 {
-    if (op.nbfixed > op1.nbfixed)
-        return (op.nbfixed);
-    return (op1.nbfixed);
+    if (op > op1)
+        return (op);
+    return (op1);
 }
 
-std::ostream& operator<<(std::ostream &out, const Fixed &op)
+std::ostream& operator<<(std::ostream &out, Fixed const &op)
 {
-    std::cout<< op.toFloat();
+    out << op.toFloat();
     return (out);
 }
+
+// Fixed::~Fixed()
+// {
+//     std::cout<<"Default Desctructor called"<<std::endl;
+// }

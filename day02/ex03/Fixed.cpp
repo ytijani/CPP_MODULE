@@ -8,20 +8,17 @@ Fixed::Fixed()
 
 Fixed::Fixed(const Fixed &op)
 {
-    std::cout<<"copy constructor called"<<std::endl;
     *this = op;
 }
 
 Fixed::Fixed(const int nb)
 {
-   std::cout<<"Int constructor called"<<std::endl;
    nbfixed = nb << fbits;
 }
 
 Fixed::Fixed(const float nb)
 {
-    std::cout<<"Float constructåor called"<<std::endl;
-    nbfixed = roundf((nb * (float)(1<<fbits)));
+    nbfixed = roundf(nb * (1<<fbits));
 }
 
 int    Fixed::toInt() const
@@ -31,7 +28,7 @@ int    Fixed::toInt() const
 
 float   Fixed::toFloat() const
 {
-    return ((float)nbfixed / (float)(1<<fbits));
+    return ((float)this->nbfixed / (1 << this->fbits));
 }
 
 void    Fixed::setRawBits(int const raw)
@@ -44,20 +41,125 @@ int    Fixed::getRawBits() const
     return (this->nbfixed);
 }
 
-Fixed  & Fixed::operator=(const Fixed & op)
+/*******comparison operators*****************/
+
+bool    Fixed::operator<(Fixed const &op) const
 {
-    std::cout<<"Copy assignment operator called"<<std::endl;
-    this->nbfixed = op.nbfixed;
+    return ((this->nbfixed < op.getRawBits()) ? true : false);
+}
+
+bool    Fixed::operator>(Fixed const &op) const
+{
+    return ((this->nbfixed > op.getRawBits()) ? true : false);
+}
+
+bool    Fixed::operator>=(Fixed const &op) const
+{
+    return ((this->nbfixed >= op.getRawBits()) ? true : false);
+}
+
+bool    Fixed::operator<=(Fixed const &op) const
+{
+    return ((this->nbfixed <= op.getRawBits()) ? true : false);
+}
+
+bool    Fixed::operator==(Fixed const &op) const
+{
+    return ((this->nbfixed == op.getRawBits()) ? true : false);
+}
+
+bool    Fixed::operator!=(Fixed const &op) const
+{
+    return ((this->nbfixed != op.getRawBits()) ? true : false);
+}
+
+/*******arithmetic operators: *****************/
+Fixed Fixed::operator+(const Fixed & op)
+{
+    return Fixed(this->toFloat() + op.toFloat());
+}
+
+Fixed Fixed::operator-(const Fixed & op)
+{
+    return Fixed(this->toFloat() - op.toFloat());
+}
+
+Fixed   Fixed::operator/(const Fixed &op)
+{
+    return Fixed(this->toFloat() / op.toFloat());
+}
+
+Fixed Fixed::operator*(const Fixed & op)
+{
+    return Fixed(this->toFloat() * op.toFloat());
+}
+
+/*****************increment********************/
+Fixed Fixed::operator++()
+{
+    ++nbfixed;
     return (*this);
 }
 
-Fixed::~Fixed()
+Fixed Fixed::operator++(int)
 {
-    std::cout<<"Destructor called"<<std::endl;
+    this->nbfixed++;
+    return (*this);
 }
 
-std::ostream& operator<<(std::ostream &out, const Fixed &op)
+Fixed   Fixed::operator--()
 {
-    std::cout<< op.toFloat();
+    --nbfixed;
+    return (*this); 
+}
+
+Fixed   Fixed::operator--(int)
+{
+    nbfixed--;
+    return (*this); 
+}
+
+Fixed  & Fixed::operator=(Fixed const & op) const
+{
+    this->nbfixed = op.getRawBits();
+    return (*this);
+}
+
+Fixed  &Fixed::min(Fixed &op, Fixed &op1)
+{
+    if (op < op1)
+        return (op);
+    return (op1);
+}
+
+Fixed const  &Fixed::min(Fixed const &op, Fixed const &op1)
+{
+    if (op < op1)
+        return (op);
+    return (op1);
+}
+
+Fixed  &Fixed::max(Fixed &op, Fixed &op1)
+ {
+    if (op > op1)
+        return (op);
+    return (op1);
+}
+
+Fixed const  &Fixed::max(Fixed const &op, Fixed const &op1)
+{
+    if (op > op1)
+        return (op);
+    return (op1);
+}
+
+std::ostream& operator<<(std::ostream &out, Fixed const &op)
+{
+    out << op.toFloat();
     return (out);
 }
+
+// Fixed::~Fixed()
+// {
+//     std::cout<<"Default Desctructor called"<<std::endl;
+// }
