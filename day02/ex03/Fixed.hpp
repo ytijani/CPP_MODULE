@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cmath>
 
+
 class Fixed
 {
     private :
@@ -28,11 +29,11 @@ class Fixed
         bool   operator==(Fixed const &op) const;
         bool   operator!=(Fixed const &op) const;
     /*******arithmetic operators: *****************/
-        Fixed   &operator= (Fixed const & op) const;
-        Fixed   operator+(const Fixed &op);
-        Fixed   operator-(const Fixed &op);
-        Fixed   operator*(const Fixed &op);
-        Fixed   operator/(const Fixed &op);
+        Fixed   &operator= (const Fixed & op);
+        Fixed   operator+(const Fixed &op) const;
+        Fixed   operator-(const Fixed &op) const;
+        Fixed   operator*(const Fixed &op) const;
+        Fixed   operator/(const Fixed &op) const;
     /*****************increment********************/
         Fixed   operator++();
         Fixed   operator++(int);

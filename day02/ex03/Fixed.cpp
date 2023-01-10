@@ -2,7 +2,7 @@
 
 Fixed::Fixed()
 {
-    std::cout<<"Default constructor called"<<std::endl;
+    // std::cout<<"Default constructor called"<<std::endl;
     this->nbfixed = 0;
 }
 
@@ -74,22 +74,22 @@ bool    Fixed::operator!=(Fixed const &op) const
 }
 
 /*******arithmetic operators: *****************/
-Fixed Fixed::operator+(const Fixed & op)
+Fixed Fixed::operator+(const Fixed & op) const
 {
     return Fixed(this->toFloat() + op.toFloat());
 }
 
-Fixed Fixed::operator-(const Fixed & op)
+Fixed Fixed::operator-(const Fixed & op) const
 {
     return Fixed(this->toFloat() - op.toFloat());
 }
 
-Fixed   Fixed::operator/(const Fixed &op)
+Fixed   Fixed::operator/(const Fixed &op) const
 {
     return Fixed(this->toFloat() / op.toFloat());
 }
 
-Fixed Fixed::operator*(const Fixed & op)
+Fixed Fixed::operator*(const Fixed & op) const
 {
     return Fixed(this->toFloat() * op.toFloat());
 }
@@ -119,7 +119,7 @@ Fixed   Fixed::operator--(int)
     return (*this); 
 }
 
-Fixed  & Fixed::operator=(Fixed const & op) const
+Fixed  & Fixed::operator=(const Fixed  & op)
 {
     this->nbfixed = op.getRawBits();
     return (*this);

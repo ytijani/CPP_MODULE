@@ -1,6 +1,6 @@
-NAME = Fixed
+NAME = Point
 
-SRC = main.cpp Fixed.cpp Point.cpp
+SRC = main.cpp Fixed.cpp Point.cpp bsp.cpp
 
 CC = c++
 

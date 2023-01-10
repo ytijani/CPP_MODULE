@@ -161,7 +161,7 @@ std::ostream& operator<<(std::ostream &out, Fixed const &op)
     return (out);
 }
 
-// Fixed::~Fixed()
-// {
-//     std::cout<<"Default Desctructor called"<<std::endl;
-// }
+Fixed::~Fixed()
+{
+    std::cout<<"Default Desctructor called"<<std::endl;
+}

@@ -44,7 +44,7 @@ class Fixed
         static Fixed  &max(Fixed &op, Fixed &op1);
         static Fixed const  &max(Fixed const &op, Fixed const &op1);
 
-        // ~Fixed();
+        ~Fixed();
 };
 
 std::ostream& operator<<(std::ostream &out, Fixed const &op);
