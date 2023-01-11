@@ -17,7 +17,8 @@ Point &Point::operator=(const Point &op)
 
 Fixed   Point::get_x() const
 {
-    return (x.toFloat());
+    // std::cout<<"my x : "<<x.toInt()<<std::endl;
+    return (x);
 }
 
 Fixed   Point::get_y() const
@@ -25,7 +26,8 @@ Fixed   Point::get_y() const
     return (y);
 }
 
-Point::Point(const float a, const float b): x(a), y(b) {}
+Point::Point(const float a, const float b): x(a), y(b) {
+}
 
 Point::~Point()
 {
