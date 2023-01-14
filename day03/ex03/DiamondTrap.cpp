@@ -13,6 +13,9 @@ DiamondTrap::DiamondTrap(std::string name)
     this->_Hitpoint = FragTrap::_Hitpoint;
     this->_Energy_point = ScavTrap::_Energy_point;
     this->_attack_damage = FragTrap::_attack_damage;
+    std::cout << "Hit Points : " <<  _Hitpoint << std::endl;
+    std::cout << " _Energy_point : " <<  _Energy_point << std::endl;
+    std::cout << "_attack_damage : " <<  _attack_damage << std::endl;
 }
 
 void    DiamondTrap::whoAmI()

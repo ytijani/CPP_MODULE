@@ -35,9 +35,9 @@ class Fixed
         Fixed   operator*(const Fixed &op) const;
         Fixed   operator/(const Fixed &op) const;
     /*****************increment********************/
-        Fixed   operator++();
+        Fixed   &operator++();
         Fixed   operator++(int);
-        Fixed   operator--();
+        Fixed   &operator--();
         Fixed   operator--(int);
 
         static Fixed  &min(Fixed &op, Fixed &op1);

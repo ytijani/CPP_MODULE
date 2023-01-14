@@ -1,9 +1,10 @@
 #include "ScavTrap.hpp"
+#include "DiamondTrap.hpp"
 
 
 int main()
 {
-    ClapTrap op("youssef");
+    DiamodTrap op("youssef");
     ScavTrap op1("lolo");
 
     op.set_ad(5);

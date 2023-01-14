@@ -2,7 +2,7 @@
 
 Fixed::Fixed()
 {
-    std::cout<<"Default constructor called"<<std::endl;
+    // std::cout<<"Default constructor called"<<std::endl;
     this->nbfixed = 0;
 }
 
@@ -95,7 +95,7 @@ Fixed Fixed::operator*(const Fixed & op)
 }
 
 /*****************increment********************/
-Fixed Fixed::operator++()
+Fixed &Fixed::operator++()
 {
     ++nbfixed;
     return (*this);
@@ -108,7 +108,7 @@ Fixed Fixed::operator++(int)
     return (tmp);
 }
 
-Fixed   Fixed::operator--()
+Fixed   &Fixed::operator--()
 {
     --nbfixed;
     return (*this); 
@@ -163,5 +163,5 @@ std::ostream& operator<<(std::ostream &out, Fixed const &op)
 
 Fixed::~Fixed()
 {
-    std::cout<<"Default Desctructor called"<<std::endl;
+    // std::cout<<"Default Desctructor called"<<std::endl;
 }

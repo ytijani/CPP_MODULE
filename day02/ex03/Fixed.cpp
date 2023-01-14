@@ -95,7 +95,7 @@ Fixed Fixed::operator*(const Fixed & op) const
 }
 
 /*****************increment********************/
-Fixed Fixed::operator++()
+Fixed &Fixed::operator++()
 {
     ++nbfixed;
     return (*this);
@@ -103,11 +103,12 @@ Fixed Fixed::operator++()
 
 Fixed Fixed::operator++(int)
 {
+    Fixed tmp(*this);
     this->nbfixed++;
-    return (*this);
+    return (tmp);
 }
 
-Fixed   Fixed::operator--()
+Fixed   &Fixed::operator--()
 {
     --nbfixed;
     return (*this); 
@@ -115,8 +116,9 @@ Fixed   Fixed::operator--()
 
 Fixed   Fixed::operator--(int)
 {
-    nbfixed--;
-    return (*this); 
+   Fixed tmp(*this);
+   this->nbfixed--;
+   return (tmp); 
 }
 
 Fixed  & Fixed::operator=(const Fixed  & op)

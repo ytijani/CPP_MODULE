@@ -18,4 +18,5 @@ class Point
         ~Point();
 };
 bool    bsp(Point const a, Point const b, Point const c, Point const point);
+bool    check_inside(Point const a, Point const b, Point const point);
 #endif
