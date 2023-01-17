@@ -2,7 +2,8 @@
 # define BUREAUCRAT_HPP
 
 # include <iostream>
-
+# include "Form.hpp"
+class Form;
 class   Bureaucrat
 {
     class GradeToohighException : public std::exception
@@ -22,7 +23,7 @@ class   Bureaucrat
         void         decremnt_grade();
         void         increment_garde();
         int         get_Grade() const;
-        void        singFrom();
+        void        singFrom(Form &obj);
 };
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &obj);

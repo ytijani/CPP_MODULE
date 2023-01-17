@@ -2,8 +2,9 @@
 # define FORM_HPP
 
 #include <iostream>
-#include "Bureaucrat"
+#include "Bureaucrat.hpp"
 
+class Bureaucrat;
 class   Form
 {
     class GradeToohighException : public std::exception
@@ -21,10 +22,11 @@ class   Form
         const int _grade_execute;
     public:
         Form();
-        std::stirng get_name();
-        bool    get_signed();
-        int     get_required_grade();
-        int     get_ex_garde();
-        void    beSigned(Bureaucrat obj);
-}
+        Form(std::string name, bool sign, int rtograde, int etograde);
+        std::string get_Name() const;
+        bool    get_signed() const;
+        int     get_required_grade() const;
+        int     get_ex_garde() const;
+        void    beSigned(Bureaucrat &obj);
+};
 # endif

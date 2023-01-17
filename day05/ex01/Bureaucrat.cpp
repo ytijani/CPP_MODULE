@@ -18,6 +18,12 @@ const char * Bureaucrat::GradetoolowException::what() const throw()
     return ("your grade is too low");
 }
 
+void        Bureaucrat::singFrom(Form &obj)
+{
+    if (_is_signed)
+        std::cout<<this->_name + "signed" + obj._name<<std::endl;
+}
+
 void   Bureaucrat::decremnt_grade()
 {
     if (this->_grade != 150)
