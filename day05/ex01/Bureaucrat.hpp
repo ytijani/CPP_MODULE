@@ -22,6 +22,7 @@ class   Bureaucrat
         void         decremnt_grade();
         void         increment_garde();
         int         get_Grade() const;
+        void        singFrom();
 };
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &obj);
