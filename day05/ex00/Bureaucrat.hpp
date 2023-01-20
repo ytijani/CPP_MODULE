@@ -17,6 +17,9 @@ class   Bureaucrat
         const std::string  _name;
         int _grade;
     public:
+        Bureaucrat();
+        Bureaucrat(const Bureaucrat &obj);
+        Bureaucrat &operator= (const Bureaucrat &obj);
         Bureaucrat(std::string name, int grade);
         std::string get_Name() const ;
         void         decremnt_grade();

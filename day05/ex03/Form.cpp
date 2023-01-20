@@ -2,7 +2,24 @@
 
 Form::Form():_grade_required(0),_grade_execute(0)
 {
+    std::cout<<"Form Default constructor called"<<std::endl;
     this->_is_signed = false;
+}
+
+Form::Form(int rtograde, int etograde):_grade_required(rtograde), _grade_execute(etograde)
+{
+     std::cout<<"Form constructor called"<<std::endl;
+}
+Form::Form(const Form &obj):_grade_required(obj._grade_required),_grade_execute(obj._grade_execute)
+{
+    *this = obj;
+}
+
+Form &Form::operator=(const Form &obj)
+{
+    if (this != &obj)
+        this->_is_signed = obj._is_signed;
+    return (*this);
 }
 
 Form::Form(std::string name,  int rtograde, int etograde):_name(name),
@@ -13,18 +30,6 @@ _grade_required(rtograde),_grade_execute(etograde)
         throw GradeToohighException();
     if (this->_grade_required >= 150 || this->_grade_execute >= 150)
         throw GradetoolowException();
-}
-
-Form::Form(const Form &obj)
-{
-    *this = obj;
-}
-
-Form &Form::operator=(const Form &obj)
-{
-    if (this != &obj)
-        this->_is_signed = obj._is_signed;
-    return (*this);
 }
 
 const char * Form::GradeToohighException::what() const throw()
@@ -41,6 +46,12 @@ void    Form::beSigned(Bureaucrat &obj)
     if (obj.get_Grade() > this->_grade_required)
         throw GradetoolowException();
     _is_signed = true;
+}
+
+void    Form::check_gradetoexec(Bureaucrat const &obj) const
+{
+    if ((obj.get_Grade() > this->_grade_execute))
+        throw GradetoolowException();
 }
 
 std::string Form::get_Name() const
@@ -67,4 +78,9 @@ std::ostream &operator<<(std::ostream &out, const Form &obj)
 {
     out<<obj.get_Name() + "required grade " <<obj.get_required_grade()<< "and execute "<<obj.get_ex_garde()<<obj.get_signed()<<std::endl;
     return (out);
+}
+
+Form::~Form()
+{
+    std::cout<<"Form destructor called"<<std::endl;
 }

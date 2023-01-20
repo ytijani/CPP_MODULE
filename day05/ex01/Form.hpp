@@ -22,6 +22,8 @@ class   Form
         const int _grade_execute;
     public:
         Form();
+        Form(const Form &obj);
+        Form &operator=(const Form &obj);
         Form(std::string name, int rtograde, int etograde);
         std::string get_Name() const;
         bool    get_signed() const;

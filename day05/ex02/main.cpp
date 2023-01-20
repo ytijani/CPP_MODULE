@@ -1,18 +1,22 @@
 #include "Bureaucrat.hpp"
-
+#include "ShrubberyCreationForm.hpp"
+# include "RobotomyRequestForm.hpp"
+# include "PresidentialPardonForm.hpp"
 
 int main()
 {
+    Bureaucrat obj1("teek", 10);
+    RobotomyRequestForm ob("lolo");
+    ShrubberyCreationForm ob1("teek");
+    PresidentialPardonForm ob2("youssef");
 
-    try
-    {
-        Bureaucrat a("youssef", 10);
-        Form b("the form", 4, 8);
-        b.beSigned(a);
-        a.singFrom(b);
-    }
-    catch(std::exception & e)
-    {
-        std::cout<<e.what()<<std::endl;
-    }
+    obj1.signForm(ob);
+    obj1.executeForm(ob);
+    std::cout<<std::endl;
+    obj1.signForm(ob1);
+    obj1.executeForm(ob1);
+    std::cout<<std::endl;
+    obj1.signForm(ob2);
+    obj1.executeForm(ob2);
+
 }
