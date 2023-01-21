@@ -10,11 +10,10 @@ int main(int ac, char *av[])
         std::ofstream outfile;
         std::string str;
         infile.open(av[1]);
-        outfile.open(op.getfilename());
-        if(!infile)
+        try(outfile.open(op.getfilename()));
+        catch()
         {
-            std::cout<<"infile not found"<<std::endl;
-            return (0);
+            
         }
         while(std::getline(infile, str))
         {

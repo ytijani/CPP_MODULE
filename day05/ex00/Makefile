@@ -5,6 +5,7 @@ SRC = main.cpp Bureaucrat.cpp
 CC = c++
 
 HEADER  = Bureaucrat.hpp
+
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
 OBJCT = $(SRC:.cpp=.o)

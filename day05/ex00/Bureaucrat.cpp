@@ -8,7 +8,7 @@ Bureaucrat::Bureaucrat()
 Bureaucrat::Bureaucrat(const std::string name, int grade):_name(name), _grade(grade)
 {
     std::cout<<"Bureaucrat constructor called"<<std::endl;
-    if(this->_grade <= 0)
+    if(this->_grade < 1)
         throw GradeToohighException();
     if (this->_grade > 150)
         throw GradetoolowException();
@@ -28,7 +28,7 @@ Bureaucrat &Bureaucrat::operator= (const Bureaucrat &obj)
 
 const char * Bureaucrat::GradeToohighException::what() const throw()
 {
-    return ("you grade is to high");
+    return ("you grade is too high");
 }
 const char * Bureaucrat::GradetoolowException::what() const throw()
 {
@@ -38,13 +38,13 @@ const char * Bureaucrat::GradetoolowException::what() const throw()
 void   Bureaucrat::decremnt_grade()
 {
     if (this->_grade != 150)
-        this->_grade++;
+        ++this->_grade;
 }
 
 void Bureaucrat::increment_garde()
 {
     if (this->_grade != 1)
-        this->_grade--;
+        --this->_grade;
 }
 
 std::string Bureaucrat::get_Name() const
@@ -57,8 +57,13 @@ int     Bureaucrat::get_Grade() const
     return (this->_grade);
 }
 
-std::ostream &operator<<( std::ostream &out, const Bureaucrat &obj)
+std::ostream &operator<<(std::ostream &out, const Bureaucrat &obj)
 {
     out<<obj.get_Name() + " ,bureaucrat grade "<<obj.get_Grade()<<std::endl;
     return (out);
+}
+
+Bureaucrat::~Bureaucrat()
+{
+    std::cout<<"Bureaucrat destructor called"<<std::endl;
 }

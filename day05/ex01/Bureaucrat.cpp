@@ -38,12 +38,16 @@ const char * Bureaucrat::GradetoolowException::what() const throw()
 
 void        Bureaucrat::singFrom(Form &obj)
 {
-    if (obj.get_signed())
+    try
+    {
+        obj.beSigned(*this);
         std::cout<<this->_name + " signed " + obj.get_Name()<<std::endl;
-    else
-        std::cout<<this->_name + "couldn’t sign " + obj.get_Name() +
-        "because Bureaucrat grade (" << this->_grade<< ")is not higher to the required one("
-        << obj.get_required_grade()<<")"<<std::endl;
+    }
+    catch(std::exception &e)
+    {
+         std::cout<<this->_name + " couldn’t sign " + obj.get_Name() +
+        " because " <<e.what()<<std::endl;
+    }
 }
 
 void   Bureaucrat::decrement_grade()

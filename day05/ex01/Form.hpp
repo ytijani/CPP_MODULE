@@ -30,5 +30,6 @@ class   Form
         int     get_required_grade() const;
         int     get_ex_garde() const;
         void    beSigned(Bureaucrat &obj);
+        ~Form();
 };
 # endif

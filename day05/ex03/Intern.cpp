@@ -3,7 +3,7 @@
 
 Intern::Intern()
 {
-
+    std::cout<<"Intern Constructor called"<<std::endl;
 }
 
 Intern::Intern(const Intern &obj)
@@ -40,7 +40,7 @@ Form *Intern::scf(std::string const &target)
 Form *Intern::makeForm(std::string name, std::string const &target)
 {
     Form* (Intern::*ptr[3])(std::string const &target) = {&Intern::rrf, &Intern::ppf, &Intern::scf};
-    std::string str[] = {"robotomy request", " pardoned","ASCII trees"};
+    std::string str[] = {"robotomy request", "pardoned","ASCII trees"};
     for(int i = 0; i < 3; i++)
     {
         if (str[i] == name)
@@ -50,4 +50,9 @@ Form *Intern::makeForm(std::string name, std::string const &target)
         }
     }
     throw Intern::NameNotFound();
+}
+
+Intern::~Intern()
+{
+    std::cout<<"Intern destructor called"<<std::endl;
 }

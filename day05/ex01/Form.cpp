@@ -1,21 +1,24 @@
 #include "Form.hpp"
 
+
 Form::Form():_grade_required(0),_grade_execute(0)
 {
+    std::cout<<"Form Defaults constructor called"<<std::endl;
     this->_is_signed = false;
 }
 
 Form::Form(std::string name,  int rtograde, int etograde):_name(name),
 _grade_required(rtograde),_grade_execute(etograde)
 {
+    std::cout<<"Form  constructor called"<<std::endl;
     this->_is_signed = false;
-    if (this->_grade_required <= 1 || this->_grade_execute <= 1)
+    if (this->_grade_required < 1 || this->_grade_execute < 1)
         throw GradeToohighException();
-    if (this->_grade_required >= 150 || this->_grade_execute >= 150)
+    if (this->_grade_required > 150 || this->_grade_execute > 150)
         throw GradetoolowException();
 }
 
-Form::Form(const Form &obj)
+Form::Form(const Form &obj):_grade_required(obj._grade_required), _grade_execute(obj._grade_execute)
 {
     *this = obj;
 }
@@ -29,7 +32,7 @@ Form &Form::operator=(const Form &obj)
 
 const char * Form::GradeToohighException::what() const throw()
 {
-    return ("you grade is to high");
+    return ("you grade is too high");
 }
 const char * Form::GradetoolowException::what() const throw()
 {
@@ -67,4 +70,9 @@ std::ostream &operator<<(std::ostream &out, const Form &obj)
 {
     out<<obj.get_Name() + "required grade " <<obj.get_required_grade()<< "and execute "<<obj.get_ex_garde()<<obj.get_signed()<<std::endl;
     return (out);
+}
+
+Form::~Form()
+{
+    std::cout<<"Form Destructor called"<<std::endl;
 }

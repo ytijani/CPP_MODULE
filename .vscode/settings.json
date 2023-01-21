@@ -50,5 +50,9 @@
         "type_traits": "cpp",
         "typeinfo": "cpp",
         "utility": "cpp"
-    }
+    },
+    "cSpell.words": [
+        "Gradetoolow",
+        "Toohigh"
+    ]
 }

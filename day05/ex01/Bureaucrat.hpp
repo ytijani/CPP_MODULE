@@ -27,6 +27,7 @@ class   Bureaucrat
         void         increment_garde();
         int         get_Grade() const;
         void        singFrom(Form &obj);
+        ~Bureaucrat();
 };
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &obj);
