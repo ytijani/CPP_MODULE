@@ -7,7 +7,5 @@ class A : public Base
 {
     public:
     ~A();
-
 };
-
 #endif
