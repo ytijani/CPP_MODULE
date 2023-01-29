@@ -3,44 +3,33 @@
 #include "B.hpp"
 #include "C.hpp"
 
-A::~A()
-{
-    
-}
-
-B::~B()
-{
-    
-}
-
-C::~C()
-{
-    
-}
-
 int get_nb()
 {
-    srand(time(NULL));
-    int random = std::rand() % 2;
+    std::srand(std::time(NULL));
+    int random = std::rand() % 3;
     return (random);
 }
 
+Base::~Base()
+{
+
+}
 Base *generete(void)
 {
-    A *ins1 = new A;
-    B *ins2 =  new B;
-    C *ins3 = new C;
 
     switch (get_nb())
     {
     case 0 :
-        return (dynamic_cast<Base *>(ins1));
+        std::cout<<"generate A"<<std::endl;
+        return (new A);
         break;
     case 1 :
-        return (dynamic_cast<Base *>(ins2));
+        std::cout<<"generate B"<<std::endl;
+        return (new B);
         break;
     case 2:
-        return (dynamic_cast<Base *>(ins3));
+        std::cout<<"generate C"<<std::endl;
+        return (new C);
         break;
     }
     return (NULL);
@@ -50,15 +39,39 @@ void    identify(Base *p)
 {
     if (dynamic_cast<A*>(p))
         std::cout<<"A"<<std::endl;
-    if (dynamic_cast<B*>(p))
+    else if (dynamic_cast<B*>(p))
         std::cout<<"B"<<std::endl;
-    if (dynamic_cast<C*>(p))
-        std::cout<<"B"<<std::endl;
+    else if (dynamic_cast<C*>(p))
+        std::cout<<"C"<<std::endl;
     else
-        std::cout<<"Not Found"<<std::endl;
+        std::cerr<<"Name Not Found"<<std::endl;
 }
 
-// void    identify(Base &p)
-// {
-//     (void)p;
-// }
+void    identify(Base &p)
+{
+    try 
+    {
+        A a = dynamic_cast<A &>(p);
+        std::cout<<"A"<<std::endl;
+    }
+    catch (std::exception &e)
+    {
+        try
+        {
+            B b = dynamic_cast<B &>(p);
+            std::cout<<"B"<<std::endl;
+        }
+        catch(const std::exception& e)
+        {
+          try
+          {
+            C c = dynamic_cast<C &>(p);
+            std::cout<<"C"<<std::endl;
+          }
+          catch(const std::exception &e)
+          {
+            std::cerr<<"Not Found"<<std::endl;
+          }
+        }
+    }
+}

@@ -1,4 +1,4 @@
-NAME = main
+NAME = Base
 
 SRC = main.cpp Base.cpp
 
@@ -6,7 +6,7 @@ CC = c++
 
 HEADEAR = Base.hpp A.hpp B.hpp C.hpp
 
-FLAGS = -Wall -Wextra -Werror -std=c++98
+FLAGS =  -Wall -Wextra -Werror -std=c++98
 
 OBJCT = $(SRC:.cpp=.o)
 
